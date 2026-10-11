@@ -1,5 +1,5 @@
 /* FV360 offline service worker - caches only application assets, never user projects. */
-const CACHE='fv360-mobile-shell-v1.0.0';
+const CACHE='fv360-mobile-shell-v1.0.1-photo-fit';
 const CORE=['./','./index.html','./styles.css','./mobile.css','./app.js','./mobile.js','./archive.js','./table-dxf-r12.js','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-180.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{for(const key of await caches.keys())if(key.startsWith('fv360-mobile-shell-')&&key!==CACHE)await caches.delete(key);await self.clients.claim()})()));
